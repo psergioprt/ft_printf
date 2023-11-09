@@ -1,0 +1,12 @@
+Useful links
+
+https://www.youtube.com/watch?v=2xayf6AMNtU ... Simple Shell - Watch this before you start
+
+https://www.youtube.com/watch?v=FHBc6cCLBME&list=PL3m_SDxfr0rvAi4cJ9eq7mN4CiduSciRJ .. Unix Shell Scripting
+
+https://www.youtube.com/watch?v=ASyB26Onryw&list=PL3m_SDxfr0ruig_UWOb9OXP_AiCmRtPgU ... Printf() How to start (5 videos)
+
+https://www.youtube.com/watch?v=ASyB26Onryw ... printf() Project breakdown - Part One
+
+https://www.youtube.com/watch?v=vQXQAaP66gE ... printf() Project breakdown - Part Two
+
