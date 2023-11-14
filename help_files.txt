@@ -10,3 +10,6 @@ https://www.youtube.com/watch?v=ASyB26Onryw ... printf() Project breakdown - Par
 
 https://www.youtube.com/watch?v=vQXQAaP66gE ... printf() Project breakdown - Part Two
 
+
+https://hector.dev.br/2021/09/15/ft-printf/
+
