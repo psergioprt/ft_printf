@@ -1,74 +1,77 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf2.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauldos- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 08:17:51 by pauldos-          #+#    #+#             */
-/*   Updated: 2023/11/10 11:20:35 by pauldos-         ###   ########.fr       */
+/*   Created: 2023/11/14 09:32:32 by pauldos-          #+#    #+#             */
+/*   Updated: 2023/11/14 11:45:10 by pauldos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include <unistd.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}
+
+char	*ft_strchr(const char *str, int c)
+{
+	while (*str)
+	{
+		if (*str == (char)c)
+			return ((char *)&(*str));
+		str++;
+	}
+	return (0);
+}
+
+int	ft_printf_format(const char *format, int i, va_list args)
+{
+	if (format[i + 1] == '%')
+		return (ft_putchar(format[i + 1]));
+	else if (format[i + 1] == 'c')
+		return (ft_putchar(va_arg(args, int)));
+	return (0);
+}
 
 int	ft_printf(const char *format, ...)
 {
-	int	chara_print;
-	va_list	list_of_args;
+	int	char_len;
+	int	i;
+	va_list	args;
 
-	chara_print = 0;
-	if (format == NULL)
-		return (-1);
-	va_start (list_of_args, format);
-	while (*format) //A loop that iterates through the characters of the string
+	i = 0;
+	char_len = 0;
+	va_start(args, format);
+	while (format[i])
 	{
-		if (*format != '%') //if the format is not the % sign
+		if (format[i] == '%')
 		{
-			write (1, format, 1); //Write the char to the standard output
-			chara_print++;
-		}
-		else //If formar is the % sign
-		{
-			format++; //Skip '%' - Check the next character
-			if (*format == '\0')
-				break;
-			if (*format == '%') //This solves %%
-			{
-				//Handle '%%' (double '%')
-				write (1, format, 1);
-				chara_print++;
-			}
-			else if (*format == 'c')
-			{
-				char c = va_arg(list_of_args, int); //Use va_arg(list, char) for char
-				write (1, &c, 1);
-				chara_print++;
-			}
-			else if (*format == 's')
-			{
-				char	*str = va_arg(list_of_args, char*);
-				int	str_len = 0;
-				//Calculate the length of the string
-				while (str[str_len] != '\0')
-					str_len++;
-				//write the string to the standard output
-				write(1, str, str_len);
-				chara_print += str_len;
+			if (ft_strchr("cspdiuxX%", format[i + 1]))
+			{			
+				char_len += ft_printf_format(format, i, args);
+				i++;
 			}
 		}
-		format++;
+		else
+			char_len += ft_putchar(format[i]);
+		i++;
 	}
-	va_end (list_of_args);
-	return (chara_print);
+	va_end(args);
+	return (char_len);
 }
 
 int	main(void)
 {
-	int num = 123;
-
-	ft_printf("My name is Luka");
-	ft_printf("My name is %s\n", "Luka");
-	ft_printf("My number is %d\n", num);
+	char c = 'd';
+	ft_printf("My name is Luka!%%c\n", c);
+	printf("My name is Luka!%c\n", c);
 	return (0);
 }
