@@ -6,7 +6,7 @@
 /*   By: pauldos- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 09:32:32 by pauldos-          #+#    #+#             */
-/*   Updated: 2023/11/15 12:29:25 by pauldos-         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:14:31 by pauldos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,52 +79,62 @@ int	ft_putnbr_u(unsigned int nb, int i)
 	num = nb;
 	if (nb < 10)
 		i = ft_putchar(nb + '0');
-	else {
+	else
+	{
 		i = ft_putnbr_u(nb / 10, i);
 		i = ft_putnbr_u(nb % 10, i);
 	}
 	return (i);
 }
 
-/*int	ft_putnbr_hex2(unsigned long long nb, int i, int uppercase)
+void	ft_putnbr_hex_digit(int hex_digit, int uppercase)
 {
-	if (nb == 0)
-		i += ft_putchar('0');
-	else if (nb < 16)
-	{
-		if (nb < 10)
-			i += ft_putchar(nb + '0');
-		else
-			i += ft_putchar(nb - 10 + (uppercase ? 'A' : 'a'));
-	}
-	else
-	{
-		i += ft_putnbr_hex(nb / 16, i, uppercase);
-		i += ft_putnbr_hex(nb % 16, i, uppercase);
-	}
-	return i;
-}*/
+	char		hex_chars[16];
+	int			i;
+	const char	*hex_literal;
 
-int ft_putnbr_hex(unsigned long long nb, int i, int uppercase)
+	hex_literal = "0123456789abcdef";
+	i = 0;
+	while (i < 16)
+	{
+		hex_chars[i] = hex_literal[i];
+		i++;
+	}
+	if (uppercase)
+	{
+		hex_chars[10] = 'A';
+		hex_chars[11] = 'B';
+		hex_chars[12] = 'C';
+		hex_chars[13] = 'D';
+		hex_chars[14] = 'E';
+		hex_chars[15] = 'F';
+	}
+	write (1, &hex_chars[hex_digit], 1);
+}
+
+int	ft_putnbr_hex(unsigned long long nb, int i, int uppercase)
 {
-    if (nb == 0)
-    {
-        i += ft_putchar('0');
-    }
-    else
-    {
-        int skip_zeros = 1; // Flag to skip leading zeros
-        for (int j = 28; j >= 0; j -= 4)
-        {
-            int hex_digit = (nb >> j) & 0xF;
-            if (hex_digit != 0 || !skip_zeros)
-            {
-                skip_zeros = 0; // Skip leading zeros only
-                i += ft_putchar(hex_digit < 10 ? hex_digit + '0' : hex_digit - 10 + (uppercase ? 'A' : 'a'));
-            }
-        }
-    }
-    return i;
+	int	j;
+	int	hex_digit;
+	int	skip_zeros;
+
+	j = 28;
+	skip_zeros = 1;
+	if (nb == 0)
+	{
+		i += ft_putchar('0');
+	}
+	while (j >= 0)
+	{
+		hex_digit = (nb >> j) & 0xF;
+		if (hex_digit != 0 || !skip_zeros)
+		{
+			skip_zeros = 0;
+			ft_putnbr_hex_digit(hex_digit, uppercase);
+		}
+		j -= 4;
+	}
+	return (i);
 }
 
 char	*ft_strchr(const char *str, int c)
@@ -140,8 +150,9 @@ char	*ft_strchr(const char *str, int c)
 
 int	ft_putptr(void *ptr, int i)
 {
-	unsigned long long addr = (unsigned long long)ptr;
+	unsigned long long	addr;
 
+	addr = (unsigned long long) ptr;
 	i += ft_putstr("0x");
 	i += ft_putnbr_hex(addr, i, 1);
 	return (i);
@@ -162,9 +173,9 @@ int	ft_printf_format(const char *format, int i, va_list args)
 	else if (format[i + 1] == 'p')
 		return (ft_putptr(va_arg(args, void *), i));
 	else if (format[i + 1] == 'x')
-		return ft_putnbr_hex(va_arg(args, unsigned long long), i, 0);
+		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 0));
 	else if (format[i + 1] == 'X')
-		return ft_putnbr_hex(va_arg(args, unsigned long long), i, 1);
+		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 1));
 	return (0);
 }
 
@@ -197,18 +208,18 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	char	c;
-	char	*str;
-	int		num;
-	unsigned int		num2;
-	void	*ptr;
-	
+	char		c;
+	char		*str;
+	int			num; 
+	void		*ptr;
+	unsigned int			num2;
+		
 	c = 'd';
 	str = "is Luka";
 	num = -2147483648;
-	num2 = 300;
+	num2 = 22300;
 	ptr = (void *)0x12345678;
-	ft_printf("My name %s! Character: %c. Number (d): %d (i): %i (u): %u. Pointer: %p. Hex %x | %X\n", str, c, num, num, num2, ptr, num2, num2);
-	printf("My name %s! Character: %c. Number (d): %d (i): %i (u): %u. Pointer: %p. Hex %x | %X\n", str, c, num, num, num2, ptr, num2, num2);
+	ft_printf("MYPRINTF: My name %s! Character: %c. Number (d): %d (i): %i (u): %u. Pointer: %p. Hex %x | %X\n", str, c, num, num, num2, ptr, num2, num2);
+	printf("PRINTF: My name %s! Character: %c. Number (d): %d (i): %i (u): %u. Pointer: %p. Hex %x | %X\n", str, c, num, num, num2, ptr, num2, num2);
 	return (0);
 }
