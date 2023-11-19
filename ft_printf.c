@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauldos- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: psergioprt <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 09:32:32 by pauldos-          #+#    #+#             */
-/*   Updated: 2023/11/16 11:20:28 by pauldos-         ###   ########.fr       */
+/*   Created: 2023/11/17 18:45:54 by psergiopr         #+#    #+#             */
+/*   Updated: 2023/11/17 18:46:28 by psergiopr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static int	ft_printf_format(const char *format, int i, va_list args)
 	else if (format[i + 1] == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (format[i + 1] == 'i' || format[i + 1] == 'd')
-		return (ft_putnbr(va_arg(args, int), i));
+		return (ft_print_int(va_arg(args, int)));
 	else if (format[i + 1] == 'u')
-		return (ft_putnbr_u(va_arg(args, unsigned int), i));
+		return (ft_print_int_u(va_arg(args, unsigned int)));
 	else if (format[i + 1] == 'p')
 		return (ft_putptr(va_arg(args, void *), i));
 	else if (format[i + 1] == 'x')
 		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 0));
 	else if (format[i + 1] == 'X')
-	return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 1));
+		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 1));
 	return (0);
 }
 
@@ -59,7 +59,7 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (char_len);
 }
-
+/*
 int	main(void)
 {
 	char			c;
@@ -70,7 +70,8 @@ int	main(void)
 
 	c = 'd';
 	str = "is Luka";
-	num = -2147483648;
+	//num = -2147483648;
+	num = 4;
 	num2 = 22300;
 	ptr = (void *)0x12345678;
 	ft_printf("_my: %% (String) (s) My name %s! | Char (c): %c\n", str, c);
@@ -80,4 +81,4 @@ int	main(void)
 	ft_printf("_my:Pointer(p): %p | Hex(x): %x | Hex(X): %X\n", ptr, num2, num2);
 	printf("sys:Pointer(p): %p | Hex(x): %x | Hex(X): %X\n", ptr, num2, num2);
 	return (0);
-}
+}*/

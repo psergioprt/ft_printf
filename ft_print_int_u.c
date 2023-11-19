@@ -1,19 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_print_int_u.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergioprt <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:44:54 by psergiopr         #+#    #+#             */
-/*   Updated: 2023/11/17 18:45:00 by psergiopr        ###   ########.fr       */
+/*   Created: 2023/11/17 18:47:30 by psergiopr         #+#    #+#             */
+/*   Updated: 2023/11/17 18:54:13 by psergiopr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+static void	ft_putchar_fd(char c, int fd)
 {
-	write (1, &c, 1);
-	return (1);
+	write (fd, &c, 1);
+}
+
+static void	print_it(unsigned int nb)
+{
+	if (nb > 9)
+		ft_print_int_u(nb / 10);
+	if (nb <= 9)
+	{
+		ft_putchar_fd(nb + 48, 1);
+		return ;
+	}
+	ft_putchar_fd((nb % 10) + 48, 1);
+}
+
+int	ft_print_int_u(unsigned int nb)
+{
+	unsigned int	i;
+
+	i = 1;
+	while (nb > 9)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
 }

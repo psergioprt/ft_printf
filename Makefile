@@ -10,8 +10,8 @@ SRC	= ft_printf.c \
 	  ft_strlen.c \
 	  ft_putchar.c \
 	  ft_putstr.c \
-	  ft_putnbr.c \
-	  ft_putnbr_u.c \
+	  ft_print_int.c \
+	  ft_print_int_u.c \
 	  ft_putnbr_hex_digit.c \
 	  ft_putnbr_hex.c \
 	  ft_strchr.c \
