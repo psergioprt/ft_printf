@@ -6,7 +6,7 @@
 /*   By: pauldos- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 09:55:06 by pauldos-          #+#    #+#             */
-/*   Updated: 2023/11/17 16:47:38 by psergiopr        ###   ########.fr       */
+/*   Updated: 2023/11/20 15:02:17 by pauldos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,52 +78,3 @@ int	ft_print_int(int n)
 		return (11);
 	return (i);
 }
-
-/*
-
-int	ft_putint(int d, int i)
-{
-	int long	num;
-
-	num = d;
-	if (num < 0)
-	{
-		i = ft_putchar('-', i);
-		num = num * -1;
-	}
-	if (num > 9)
-	{
-		i = ft_putint(num / 10, i);
-	}
-	i = ft_putchar(num % 10 + '0', i);
-	return (i);
-}
-
-int ft_putint(int nb)
-{
-	int count;
-
-	count = 0;
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return 11;
-	}
-	if (nb < 0)
-	{
-		write(1, "-", 1);
-		nb = -nb;
-		count++;
-	}
-	if (nb < 10)
-	{
-		write(1, &nb, 1);
-		count++;
-	}
-	else
-	{
-		count += ft_putint(nb / 10);
-		count += ft_putint(nb % 10);
-	}
-	return (count);
-}*/
