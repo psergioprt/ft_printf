@@ -6,7 +6,7 @@
 /*   By: psergioprt <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:47:30 by psergiopr         #+#    #+#             */
-/*   Updated: 2023/11/17 18:54:13 by psergiopr        ###   ########.fr       */
+/*   Updated: 2023/11/20 07:42:18 by psergiopr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_print_int_u(unsigned int nb)
 {
 	unsigned int	i;
 
+	print_it(nb);
 	i = 1;
 	while (nb > 9)
 	{

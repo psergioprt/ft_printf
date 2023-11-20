@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergioprt <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:45:54 by psergiopr         #+#    #+#             */
-/*   Updated: 2023/11/17 18:46:28 by psergiopr        ###   ########.fr       */
+/*   Created: 2023/11/20 10:43:58 by psergiopr         #+#    #+#             */
+/*   Updated: 2023/11/20 12:10:21 by psergiopr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ static int	ft_printf_format(const char *format, int i, va_list args)
 		return (ft_print_int(va_arg(args, int)));
 	else if (format[i + 1] == 'u')
 		return (ft_print_int_u(va_arg(args, unsigned int)));
+	else if (format[i + 1] == 'x' || format[i + 1] == 'X')
+	{
+		if (format[i + 1] == 'X')
+			return (ft_p_hex(va_arg(args, unsigned int), "0123456789ABCDEF"));
+		else
+			return (ft_p_hex(va_arg(args, unsigned int), "0123456789abcdef"));
+	}
 	else if (format[i + 1] == 'p')
-		return (ft_putptr(va_arg(args, void *), i));
-	else if (format[i + 1] == 'x')
-		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 0));
-	else if (format[i + 1] == 'X')
-		return (ft_putnbr_hex(va_arg(args, unsigned long long), i, 1));
+		return (ft_print_ptr(va_arg(args, void *), "0123456789abcdef"));
 	return (0);
 }
 
@@ -62,23 +65,23 @@ int	ft_printf(const char *format, ...)
 /*
 int	main(void)
 {
-	char			c;
 	char			*str;
-	int				num; 
-	void			*ptr;
-	unsigned int	num2;
+	char			c;
+	int				n;
+	unsigned int	n2;
+	void	*p;
 
-	c = 'd';
 	str = "is Luka";
-	//num = -2147483648;
-	num = 4;
-	num2 = 22300;
-	ptr = (void *)0x12345678;
+	c = 'd';
+	n = -2147483648;
+	n2 = -123;
+	p = (void *)0;
+
 	ft_printf("_my: %% (String) (s) My name %s! | Char (c): %c\n", str, c);
-	printf("sys: %% (String) (s) My Name %s! | Char (c): %c\n", str, c);
-	ft_printf("_my: Number(d): %d | (i): %i | (u): %u\n", num, num, num2);
-	printf("sys: Number(d): %d | (i): %i | (u): %u\n", num, num, num2);
-	ft_printf("_my:Pointer(p): %p | Hex(x): %x | Hex(X): %X\n", ptr, num2, num2);
-	printf("sys:Pointer(p): %p | Hex(x): %x | Hex(X): %X\n", ptr, num2, num2);
+	printf("sys: %% (String) (s) My name %s! | Char (c): %c\n", str, c);
+	ft_printf("_my: Number (d) %d | (i): %i | (u): %u\n", n, n, n2);
+	printf("Sys: Number (d) %d | (i): %i | (u): %u\n", n, n, n2);
+	ft_printf("_my: Pointer (p): %p | Hex(x): %x (X): %X\n", p, n2, n2);
+	printf("Sys: Pointer (p): %p | Hex(x): %x (X): %X\n", p, n2, n2);
 	return (0);
 }*/

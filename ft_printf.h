@@ -6,7 +6,7 @@
 /*   By: psergioprt <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:46:57 by psergiopr         #+#    #+#             */
-/*   Updated: 2023/11/17 18:47:00 by psergiopr        ###   ########.fr       */
+/*   Updated: 2023/11/20 12:10:01 by psergiopr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int		ft_putchar(char c);
 int		ft_putstr(char *str);
 int		ft_print_int(int n);
 int		ft_print_int_u(unsigned int n);
-void	ft_putnbr_hex_digit(int hex_digit, int uppercase);
-int		ft_putnbr_hex(unsigned long long nb, int i, int uppercase);
+int		ft_p_hex(unsigned int nbr, char *base);
 char	*ft_strchr(const char *str, int c);
-int		ft_putptr(void *ptr, int i);
+int		ft_print_ptr(void *nbr, char *base);
 
 #endif
