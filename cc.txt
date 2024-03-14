@@ -1,1 +1,0 @@
-cc -Wall -Wextra -Werror ft_printf.c ft_strchr.c ft_putchar.c ft_putstr.c ft_print_int.c ft_print_int_u.c ft_strlen.c ft_print_hex.c ft_print_ptr.c
