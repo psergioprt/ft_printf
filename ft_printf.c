@@ -15,11 +15,11 @@
 static int	ft_printf_format(const char *format, int i, va_list args)
 {
 	if (format[i + 1] == '%')
-		return (ft_putchar(format[i + 1]));
+		return (ft_printf_putchar(format[i + 1]));
 	else if (format[i + 1] == 'c')
-		return (ft_putchar(va_arg(args, int)));
+		return (ft_printf_putchar(va_arg(args, int)));
 	else if (format[i + 1] == 's')
-		return (ft_putstr(va_arg(args, char *)));
+		return (ft_printf_putstr(va_arg(args, char *)));
 	else if (format[i + 1] == 'i' || format[i + 1] == 'd')
 		return (ft_print_int(va_arg(args, int)));
 	else if (format[i + 1] == 'u')
@@ -49,14 +49,14 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (ft_strchr("cspdiuxX%", format[i + 1]))
+			if (ft_printf_strchr("cspdiuxX%", format[i + 1]))
 			{
 				char_len += ft_printf_format(format, i, args);
 				i++;
 			}
 		}
 		else
-			char_len += ft_putchar(format[i]);
+			char_len += ft_printf_putchar(format[i]);
 		i++;
 	}
 	va_end(args);

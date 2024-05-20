@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_printf_strchr(const char *str, int c)
 {
 	while (*str)
 	{

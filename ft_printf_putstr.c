@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_printf_putstr(char *str)
 {
 	int	len;
 
@@ -21,7 +21,7 @@ int	ft_putstr(char *str)
 		write (1, "(null)", 6);
 		return (6);
 	}
-	len = ft_strlen(str);
+	len = ft_printf_strlen(str);
 	write (1, str, len);
 	return (len);
 }

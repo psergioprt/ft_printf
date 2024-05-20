@@ -54,18 +54,18 @@ int	ft_print_ptr(void *nbr, char *base)
 	len = 0;
 	if (!nbr)
 	{
-		ft_putstr("(nil)");
+		ft_printf_putstr("(nil)");
 		return (5);
 	}
 	str = hex_to_str((unsigned long long)nbr, base);
 	if ((unsigned long)nbr == 0)
 	{
-		ft_putchar('0');
+		ft_printf_putchar('0');
 	}
 	else
 	{
-		ft_putstr("0x");
-		len = ft_putstr(str) + 2;
+		ft_printf_putstr("0x");
+		len = ft_printf_putstr(str) + 2;
 	}
 	free(str);
 	return (len);

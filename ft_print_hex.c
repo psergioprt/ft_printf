@@ -52,7 +52,7 @@ int	ft_p_hex(unsigned int nbr, char *base)
 	int		len;
 
 	str = hex_to_str(nbr, base);
-	len = ft_putstr(str);
+	len = ft_printf_putstr(str);
 	free(str);
 	return (len);
 }

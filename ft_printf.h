@@ -20,13 +20,13 @@
 
 int		ft_printf(const char *format, ...);
 
-int		ft_strlen(char *str);
-int		ft_putchar(char c);
-int		ft_putstr(char *str);
+int		ft_printf_strlen(const char *str);
+int		ft_printf_putchar(char c);
+int		ft_printf_putstr(char *str);
 int		ft_print_int(int n);
 int		ft_print_int_u(unsigned int n);
 int		ft_p_hex(unsigned int nbr, char *base);
-char	*ft_strchr(const char *str, int c);
+char	*ft_printf_strchr(const char *str, int c);
 int		ft_print_ptr(void *nbr, char *base);
 
 #endif
