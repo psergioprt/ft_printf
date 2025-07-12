@@ -19,7 +19,7 @@ It supports formatted output with various conversion specifiers and flags.
 
 Compile using the provided Makefile:
 
-```bash
+bash
 make
 
 ## ▶️ Usage
