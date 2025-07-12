@@ -32,7 +32,7 @@ Outputs:
 
 Hello world! Number: 42
 
-📌 Learning Outcomes
+## 📌 Learning Outcomes
 
     Mastery of variadic functions and va_list handling.
 
